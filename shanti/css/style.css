@@ -1,0 +1,41 @@
+html, body{
+    margin:0;
+}
+
+header {
+  background: #111;
+  color: #fff;
+  height: 80px;
+  padding: 0% 5%;
+  width: 90%;
+  position: absolute;
+  z-index: 1000;
+  font-family: "proxima nova", "Helvetica Neue", Helvetica, Arial, Sans-serif;
+  /* Navigation */
+}
+
+#heading {
+    display: inline; float: left; margin-top: 25px;
+}
+
+#nav { width: 410px; float: right; margin-top: 22px; }
+
+
+#nav li{
+    width: 100px;
+    margin-top: 9px;
+    float: left;
+    text-align: center;
+    display: inline;
+}
+#nav li a {  color: #999; line-height: 2.8em; opacity:0.6; font-size: 16px; text-decoration: none; font-family: "proxima nova", "Helvetica Neue", Helvetica, Arial, Sans-serif; }
+#nav li a:active { opacity:1; border-bottom: 2px solid #fff; }
+#nav li a:hover { color: red; opacity:1; }
+
+#nav .current_page{
+	border-bottom:5px solid #00FFFF;
+}
+
+#nav .current_page a{
+	color: #fff;
+}

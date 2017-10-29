@@ -1,0 +1,9 @@
+      #ele{
+        background-color: #797979;
+        color: #fff;
+        width: 300px;
+        height:100px;
+        cursor: move;
+        position: relative;
+        padding: 10px;
+      }

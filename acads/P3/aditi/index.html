@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="C:\Users\ADITI BHANDARI\Downloads\jquery-3.2.1.min.js"></script>
+		<script type="text/javascript">
+		document.getElementById("hi").innerHTML = "hiiii";
+						var snap = document.getElementById("snap").value,
+			livesnap = document.getElementById("livesnap").value,
+			container = document.getElementById("container").value,
+			gridWidth = 196,
+		gridHeight = 100,
+		gridRows = 6,
+		gridColumns = 5,
+		i, x, y;
+		//loop through and create the grid (a div for each cell). Feel free to tweak the variables above
+		for (i = 0; i < gridRows * gridColumns; i++) {
+			y = Math.floor(i / gridColumns) * gridHeight;
+			x = (i * gridWidth) % (gridColumns * gridWidth);
+			$("<div/>").css({position:"absolute", border:"1px solid #454545", width:gridWidth-1, height:gridHeight-1, top:y, left:x}).prependTo($container);
+		}
+		//set the container's size to match the grid, and ensure that the box widths/heights reflect the variables above
+		TweenLite.set($container, {height: gridRows * gridHeight + 1, width: gridColumns * gridWidth + 1});
+		TweenLite.set("#obj1", {width:gridWidth, height:gridHeight, lineHeight:gridHeight + "px"});
+
+		//the update() function is what creates the Draggable according to the options selected (snapping).
+		function update() {
+		  var snap = $snap.prop("checked"),
+			  liveSnap = $liveSnap.prop("checked");
+			Draggable.create(".box", {
+				bounds:$container,
+				edgeResistance:0.65,
+				type:"x,y",
+				throwProps:true,
+			autoScroll:true,
+				liveSnap:liveSnap,
+				snap:{
+					x: function(endValue) {
+						return (snap || liveSnap) ? Math.round(endValue / gridWidth) * gridWidth : endValue;
+					},
+					y: function(endValue) {
+						return (snap || liveSnap) ? Math.round(endValue / gridHeight) * gridHeight : endValue;
+					}
+				}
+			});
+		}
+
+		//when the user toggles one of the "snap" modes, make the necessary updates...
+		$snap.on("change", applySnap());
+		$liveSnap.on("change", applySnap());
+
+		function applySnap() {
+			if ($snap.prop("checked") || $liveSnap.prop("checked")) {
+				$("#obj1").each(function(index, element) {
+					TweenLite.to(element, 0.5, {
+						x:Math.round(element._gsTransform.x / gridWidth) * gridWidth,
+						y:Math.round(element._gsTransform.y / gridHeight) * gridHeight,
+						delay:0.1,
+						ease:Power2.easeInOut
+					});
+				});
+			}
+			update();
+		}
+
+		update();	
+
+		</script>
+		<style>
+			body {
+			background-color:black;
+			font-family: Signika Negative, Asap, sans-serif;
+			}
+
+			#container {
+			height:801px; 
+			overflow:visible; 
+			padding:0; 
+			position:relative;
+			}
+			
+			#obj1{
+			width: 40px;
+			height: 90px;
+			line-height: 100px;
+			color: black;
+			position: absolute;
+			top:0;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			border-radius: 10px;
+			}
+		.controls {
+			background-color: #222;
+			border: 1px solid #555;
+			color: #bbb;
+			font-size: 18px;
+		  margin: 20px 0;
+		}
+		.controls ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.controls li {
+			display: inline-block;
+			padding: 8px 0 8px 10px;
+			margin:0;
+		}
+		.controls input {
+		  vertical-align:middle;
+		  cursor: pointer;
+		}
+		.controls .controlsTitle {
+		  border-right:1px solid #555; 
+		  border-bottom:none; 
+		  padding-right:10px;
+		}
+		</style>
+	</head>
+	<body>
+		<link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Signika+Negative:300,400,700' rel='stylesheet' type='text/css'>
+		
+		<div id="container">
+			<div id="obj1"><img src="pencil-1300460_960_720.png" width="40px" height="90px"></div>
+		</div>
+		<p id="hi" style="color: white"></p>
+		<div class="controls">
+				<ul>
+					<li class="controlsTitle">Options</li>
+					<li>
+						<label><input type="checkbox" name="snap" id="snap" value="1" /> Snap end position to grid</label>
+					</li>
+					<li>
+						<label><input type="checkbox" name="liveSnap" id="liveSnap" value="1" /> Live snap</label>
+					</li>
+				</ul>
+		</div>
+	</body>
+</html>

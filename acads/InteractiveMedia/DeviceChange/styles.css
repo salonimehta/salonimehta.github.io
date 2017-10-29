@@ -1,0 +1,18 @@
+/*mobile*/
+
+@media (max-device-width: 900px) {
+p {background-color: red; color:white;}
+#mobile {background-color: orange;  width: 720px;}
+#laptop {display: none;}
+}
+
+
+/*laptop*/
+
+@media (min-device-width: 900px) {
+p {background-color: lightblue; color:navy;}
+/*
+#laptop {background-color: orange;}
+*/
+#mobile {display: none;}
+}

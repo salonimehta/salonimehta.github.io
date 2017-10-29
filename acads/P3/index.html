@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include meta tag to ensure proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <!-- Include the jQuery library -->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- Include the jQuery Mobile library -->
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+	<!--turn screen around if portrait
+  <style> 
+		@media only screen and (orientation:portrait){
+		  #normal, #myopic {  s
+		    height: 100vw;
+		    -webkit-transform: rotate(90deg);
+		    -moz-transform: rotate(90deg);
+		    -o-transform: rotate(90deg);
+		    -ms-transform: rotate(90deg);
+		    transform: rotate(90deg);
+		  }
+		}
+  </style>
+  -->
+</head>
+<body>
+
+<!-- Page 1: The Normal Eye -->
+<div data-role="page" id="normal" class="ui-alt-icon ui-nodisc-icon">
+
+	<!--panel-->
+	<div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
+	  <h2>Random Fact</h2>
+	  <p>Hello from the hidden world :D</p>
+	</div>
+
+	<!--header-->
+	<div data-role="header" data-position="inline">
+	<a href="#myPanel" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+    <h1>The Normal Eye</h1>
+	<!--navbar-->
+	<div data-role="navbar">
+    <ul>
+      <li><a href="#normal" class="ui-btn ui-icon-eye ui-btn-icon-left">Normal Vision</a></li>
+      <li><a href="#myopic">Myopia</a></li>
+      <li><a href="#hyperopic">Hyperopia</a></li>
+    </ul>
+  </div>
+  </div>
+	
+    <!--main content-->
+  <div data-role="main" class="ui-content">
+    <p>Edit lens
+    	<a href="#lensedit" class="ui-btn ui-btn-inline ui-corner-all ui-icon-edit ui-btn-icon-notext">Edit lens</a>
+    </p>
+    <p>Interactions will come here</p>   
+  </div>
+
+	<!--Footer-->
+  <div data-role="footer" data-position="fixed" data-fullscreen="true">
+    <h1>Notes? Learnings? Questions?</h1>
+  </div>
+</div> 
+
+<!-- Page 2: The Myopic Eye -->
+<div data-role="page" id="myopic" class="ui-alt-icon ui-nodisc-icon">
+	<!--header-->
+	<div data-role="header" data-position="inline">
+	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+    <h1>The Myopic Eye</h1>
+	<!--navbar-->
+	<div data-role="navbar">
+    <ul>
+      <li><a href="#normal"> Normal Visionnnn</a></li>
+      <li><a href="#myopic" class="ui-btn ui-icon-eye ui-btn-icon-left">Myopia</a></li>
+      <li><a href="#hyperopic">Hyperopia</a></li>
+    </ul>
+  </div>
+  </div>
+	
+    <!--main content-->
+  <div data-role="main" class="ui-content">
+    <p>Edit lens
+    	<a href="#lensedit" class="ui-btn ui-btn-inline ui-corner-all ui-icon-edit ui-btn-icon-notext">Edit lens</a>
+    </p>
+    <p>Interactions will come here</p>
+  </div>
+
+	<!--Footer-->
+  <div data-role="footer" data-position="fixed" data-fullscreen="true">
+    <h1>Notes? Learnings? Questions?</h1>
+    <!--translate to hindi-->
+    <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+  </div>
+</div> 
+
+
+<!-- Dialog: Edit lens page -->
+<div data-role="page" data-dialog="true" id="lensedit">
+  <div data-role="header">
+    <h1>Edit Corrective Lens</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">    
+        
+    <!--slider-->
+    <form method="post" action="/action_page_post.php">
+      <label for="flength">Focal Length</label>
+      <input type="range" name="points" id="points" value="0" min="-100" max="100" data-highlight="false">
+      <input type="submit" data-inline="true" value="Submit">
+    </form>
+    </div>
+
+  <div data-role="footer">
+    <h1>Click on "X" in the header to close the box.</h1>
+  </div>
+</div> 
+
+
+</body>
+</html>

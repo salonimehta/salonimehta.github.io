@@ -1,0 +1,11 @@
+p   {color: #eee}
+h2  {color: teal; border:1px solid; padding:10px; margin:2px; text-decoration: underline;}
+#h2o  {border:1px dashed yellow; text-decoration: none;}
+.h2o  {border:2px dotted blue; text-decoration: line-through;}
+a:link {text-decoration: none;}
+a:hover {background-color: yellow;}
+table, th, td {border:5px solid #067DA0; border-collapse: collapse;}
+th, td {padding: 15px;}
+th:hover {background-color: lightgreen; color: #067DA0;}
+#bluo:hover {background-color: #067DA0; color: white;}
+table tr:nth-child(even) {background-color: lightblue;}

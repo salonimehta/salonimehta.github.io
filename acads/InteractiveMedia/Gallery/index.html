@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<title>Saurabh's Wedding</title>
+<link rel="stylesheet" href="styles.css" />
+<link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+
+<!-- dynamic drive -->
+<link rel="stylesheet" href="simplegallery.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- <script src="jquery.touchSwipe.min.js"></script> -->
+<script type="text/javascript" src="simplegallery.js"></script>
+
+<script type="text/javascript">
+var mygallery=new simpleGallery({
+	wrapperid: "simplegallery1", //ID of main gallery container,
+	dimensions: [740, 490], //width/height of gallery in [pixels, pixels] or ['percentage%', pixels]
+	imagearray: [
+		["Images/1.jpg", "", "", ""],
+		["Images/2.jpg", "", "", ""],
+		["Images/3.jpg", "", "", ""],
+		["Images/4.jpg", "", "", ""],
+	    ["Images/5.jpg", "", "", ""],
+		["Images/6.jpg", "", "", ""],
+		["Images/7.jpg", "", "", ""],
+		["Images/8.jpg", "", "", ""],
+		["Images/9.jpg", "", "", ""],
+		["Images/10.jpg", "", "", ""],
+		["Images/11.jpg", "", "", ""],
+		["Images/12.jpg", "", "", ""],
+	    ["Images/13.jpg", "", "", ""],
+		["Images/14.jpg", "", "", ""],
+		["Images/15.jpg", "", "", ""]
+	],
+	autoplay: [true, 2500, 2], //[auto_play_boolean, delay_btw_slide_millisec, cycles_before_stopping_int]
+	persist: false,
+	scaleimage: 'both', //valid values are 'both', 'width', or 'none'
+	fadeduration: 500, //transition duration (milliseconds)
+	oninit:function(){ //event that fires when gallery has initialized/ ready to run
+	},
+	onslide:function(curslide, i){ //event that fires after each slide is shown
+		//curslide: returns DOM reference to current slide's DIV (ie: try alert(curslide.innerHTML)
+		//i: integer reflecting current image within collection being shown (0=1st image, 1=2nd etc)
+	}
+})
+</script>
+
+	</head>
+	<body>
+	    <div class=main align=center style="background-color:white; width:740px; margin:0 auto">
+	    <h1>Saurabh weds Namrata</h1>
+            <div id="simplegallery1" class="simplegallery"></div>
+        <p><i>more pictures coming soon!</i></p>
+        </div>
+	</body>
+</html>

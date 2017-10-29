@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include meta tag to ensure proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <!-- Include the jQuery library -->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- Include the jQuery Mobile library -->
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+  <style>
+    .eyeCanvas {width:98%; margin-left: 1%; height:300px; border:1px solid #c3c3c3;}
+  </style>
+</head>
+<body>
+
+<!-- Page 1: The Normal Eye -->
+<div data-role="page" id="normal" class="ui-alt-icon ui-nodisc-icon">
+
+	<!--panel-->
+	<div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
+	  <h2>Random Fact</h2>
+	  <p>Hello from the hidden world :D</p>
+	</div>
+
+	<!--header-->
+	<div data-role="header" data-position="inline">
+	<a href="#myPanel" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+    <h1>The Normal Eye</h1>
+	<!--navbar-->
+	<div data-role="navbar">
+    <ul>
+      <li><a href="#normal" class="ui-btn ui-icon-eye ui-btn-icon-left">Normal Vision</a></li>
+      <li><a href="#myopic">Myopia</a></li>
+      <li><a href="#hyperopic">Hyperopia</a></li>
+    </ul>
+  </div>
+  </div>
+	
+    <!--main content-->
+  <div data-role="main" class="ui-content">
+    <canvas width="500" height=600 class="eyeCanvas" id="normalEyeCanvas"></canvas>
+    <p>Edit lens
+    	<a href="#lensedit" class="ui-btn ui-btn-inline ui-corner-all ui-icon-edit ui-btn-icon-notext">Edit lens</a>
+    </p>
+  </div>
+
+	<!--Footer-->
+  <div data-role="footer" data-position="fixed" data-fullscreen="true">
+    <h1>Notes? Learnings? Questions?</h1>
+  </div>
+</div> 
+
+<!-- Page 2: The Myopic Eye -->
+<div data-role="page" id="myopic" class="ui-alt-icon ui-nodisc-icon">
+	<!--header-->
+	<div data-role="header" data-position="inline">
+	<a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+    <h1>The Myopic Eye</h1>
+	<!--navbar-->
+	<div data-role="navbar">
+    <ul>
+      <li><a href="#normal"> Normal Vision</a></li>
+      <li><a href="#myopic" class="ui-btn ui-icon-eye ui-btn-icon-left">Myopia</a></li>
+      <li><a href="#hyperopic">Hyperopia</a></li>
+    </ul>
+  </div>
+  </div>
+	
+    <!--main content-->
+  <div data-role="main" class="ui-content">
+    <!--
+    <p>Edit lens
+    	<a href="#lensedit" class="ui-btn ui-btn-inline ui-corner-all ui-icon-edit ui-btn-icon-notext">Edit lens</a>
+    </p>
+    -->
+    <canvas width="500" height=600 class="eyeCanvas" id="myopicEyeCanvas"></canvas>
+    <!--slider-->
+    <label for="flegth">Pencil Position</label>
+    <input type="range" name="points" id="points" value="0" min="-30" max="30" data-highlight="false">
+    <input type="submit" data-inline="true" value="Submit" data-rel="back" onclick="renderPencilMove();">
+    </div>
+    
+  </div>
+
+	<!--Footer-->
+  <div data-role="footer" data-position="fixed" data-fullscreen="true">
+    <h1>Notes? Learnings? Questions?</h1>
+  </div>
+</div> 
+
+
+<!-- Page 3: The Hyperopic Eye -->
+<div data-role="page" id="hyperopic" class="ui-alt-icon ui-nodisc-icon">
+  <!--header-->
+  <div data-role="header" data-position="inline">
+  <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+    <h1>The Hyperopic Eye</h1>
+  <!--navbar-->
+  <div data-role="navbar">
+    <ul>
+      <li><a href="#normal"> Normal Vision</a></li>
+      <li><a href="#myopic" class="ui-btn ui-icon-eye ui-btn-icon-left">Myopia</a></li>
+      <li><a href="#hyperopic">Hyperopia</a></li>
+    </ul>
+  </div>
+  </div>
+  
+    <!--main content-->
+  <div data-role="main" class="ui-content">
+    <p>Edit lens
+      <a href="#lensedit" class="ui-btn ui-btn-inline ui-corner-all ui-icon-edit ui-btn-icon-notext">Edit lens</a>
+    </p>
+    <canvas width="500" height=600 class="eyeCanvas" id="hyperopicEyeCanvas"></canvas>
+
+  </div>
+
+  <!--Footer-->
+  <div data-role="footer" data-position="fixed" data-fullscreen="true">
+    <h1>Notes? Learnings? Questions?</h1>
+    <!--translate to hindi-->
+    <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+  </div>
+</div> 
+
+
+<!-- Dialog: Edit lens page -->
+<div data-role="page" data-dialog="true" id="lensedit">
+  <div data-role="header">
+    <h1>Edit Corrective Lens</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">    
+        
+    <!--slider
+    <label for="flength">Focal Length</label>
+    <input type="range" name="points" id="points" value="0" min="-20" max="20" data-highlight="false">
+    <input type="submit" data-inline="true" value="Submit" data-rel="back" onclick="renderPencilMove();">
+    </div>
+    -->
+
+  <div data-role="footer">
+    <h1>Click on "X" in the header to close the box.</h1>
+  </div>
+</div> 
+
+
+</body>
+
+<script>
+
+  var retinaMid = [40,65];
+  var pencilCoords = [230,85];
+
+  function drawLine(canvasId, startPoint, endPoint) {
+      var canvas2 = document.getElementById(canvasId);
+      var ctx2 = canvas2.getContext("2d");
+      ctx2.beginPath();
+      ctx2.moveTo(startPoint[0],startPoint[1]);
+      ctx2.lineTo(endPoint[0],endPoint[1]);
+      ctx2.stroke();
+  }
+
+
+  function renderCanvas(canvasId) {
+    var canvas = document.getElementById(canvasId);
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 500, 600);
+    // Eye
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(35,15,5,100);
+    // Lens
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(130,35,3,60);
+    // Pencil
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(pencilCoords[0],45,3,40);
+    // Pencil to lens
+    lensTop = [130,35];
+    lensBottom = [130,95];
+    //retinaMid = [5, 65];
+    drawLine(canvasId, pencilCoords, lensTop);
+    drawLine(canvasId, pencilCoords, lensBottom);
+    drawLine(canvasId, lensTop, retinaMid);
+    drawLine(canvasId, lensBottom, retinaMid);
+  }
+
+  function renderAllCanvas() {
+    renderCanvas("normalEyeCanvas");
+    retinaMid = [50, 65];
+    renderCanvas("myopicEyeCanvas");
+    retinaMid = [10, 65];
+    renderCanvas("hyperopicEyeCanvas");
+  }
+
+  // Moves the pencil xDelta from the current position
+  function renderPencilMove() {
+    xDelta = parseInt($("#points").val());
+    retinaMid = [40,65];
+    pencilCoords = [pencilCoords[0] + xDelta, pencilCoords[1]];
+    renderAllCanvas();
+  }
+
+  renderAllCanvas();
+
+</script>
+
+
+</html>

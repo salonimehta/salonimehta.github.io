@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="600" height="500"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script>
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(50, 50, 5, 200);
+
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(150, 100, 5, 100);
+
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(400, 100, 5, 150);
+
+
+// line to top of the lens
+ctx.moveTo(150,100);
+ctx.lineTo(400,250);
+ctx.stroke();
+
+// line to bottom of the lens
+ctx.moveTo(150,200);
+ctx.lineTo(400,250);
+ctx.stroke();
+
+
+// line from bottom of the lens
+ctx.moveTo(150,200);
+ctx.lineTo(50,150);
+ctx.stroke();
+
+// line from top of the lens
+ctx.moveTo(150,100);
+ctx.lineTo(50,150);
+ctx.stroke();
+
+
+</script>
+
+</body>
+</html>

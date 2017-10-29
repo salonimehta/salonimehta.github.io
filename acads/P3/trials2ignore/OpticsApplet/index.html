@@ -1,0 +1,256 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<title>The Human Eye</title>
+<meta content="en-us" http-equiv="Content-Language">
+<meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+<meta content="Microsoft FrontPage 12.0" name="GENERATOR">
+<meta content="FrontPage.Editor.Document" name="ProgId">
+<script language="JavaScript"> 
+
+var timerID=0;
+var idfs=0;
+var idns=0;
+var idg=0;
+
+
+function initApplet(){  
+  clearTimeout(timerID);
+  n=document.Optics.getAppletCount();
+  if(n==-1){ // error condition
+    alert("Internal Java error.  Quit browser and restart.");
+    return;  
+  }
+  if(document.applets.length!=n ){
+     // applets have not yet loaded
+	 timerID=setTimeout("initApplet()",500);
+	 return;
+   }
+   timerID=0;
+}
+
+
+function Healthy(){
+     initApplet();
+     document.Optics.setDefault();
+     document.Optics.setElementSize(0.65);
+     document.Optics.addObject("image","file=opticsimages/normaleye.gif, x=4.1, y=0.65");
+	  id=document.Optics.addObject("lens","x=4.4,f= 1");
+	  document.Optics.setDragable(id,false);
+	  	document.slider.setValue(1);
+ 	document.slider.setJSFunction("sliderMoved()");
+
+}
+
+  
+function Near(){
+    initApplet();
+    document.Optics.setDefault();
+     document.Optics.setElementSize(0.65);
+	  id=document.Optics.addObject("lens","x=4.4,f= 1");
+	  document.Optics.setDragable(id,false);
+	document.Optics.addObject("image","file=opticsimages/neareye.gif, x=4.1, y=0.65");
+	document.slider.setValue(1);
+ 	document.slider.setJSFunction("sliderMoved()");
+
+}
+
+function Far(){
+  initApplet();
+document.Optics.setDefault();
+     document.Optics.setElementSize(0.65);
+	  id=document.Optics.addObject("lens","x=4.4,f= 1");
+	  document.Optics.setDragable(id,false);
+	document.Optics.addObject("image","file=opticsimages/fareye.gif, x=4.1, y=0.65");
+	document.slider.setValue(1);
+ 	document.slider.setJSFunction("sliderMoved()");
+}
+
+function sliderMoved(){
+	 if(timerID==0) timerID=setTimeout("sliderMoved2()",10);
+}
+
+function sliderMoved2(){
+	fl=document.slider.getValue();
+	document.Optics.set(id,"lens","f="+fl);
+	timerID=0;
+}
+	
+function farsource(){
+initApplet();
+  document.Optics.setAutoRefresh(false);
+  	if (idfs!=0){ 
+  	  document.Optics.deleteObject(idfs);
+  	  idfs=0;
+  	}else {
+  		document.Optics.setRayRGB(0,250,0);
+  		idfs=document.Optics.addObject("source","infinite,x=0,y=0,s=100,slope=0");
+  	}
+	
+	  document.Optics.setAutoRefresh(true);
+
+	}
+	
+function nearsource(){
+initApplet();
+document.Optics.setAutoRefresh(false);
+  	if (idns!=0){ 
+  	  document.Optics.deleteObject(idns);
+  	  idns=0;
+  	}else {
+	document.Optics.setRayRGB(0,0,250);
+	idns=document.Optics.addObject("source","point,x=0.15,y=0,s=50,slope=0.3,inc=0.05");
+		document.Optics.setDragable(idns,true);
+	document.Optics.setResizable(idns,true);
+	} 
+		  document.Optics.setAutoRefresh(true);
+	
+	}
+	
+	function glasses(){
+	initApplet();
+document.Optics.setAutoRefresh(false);
+  	if (idg!=0){ 
+  	  document.Optics.deleteObject(idg);
+  	  document.Optics.deleteObject(id3);
+  	  idg=0;
+  	}else {
+	idg=document.Optics.addObject("lens","x=3.6,f=1");
+		document.Optics.setDragable(idg,false);
+	document.Optics.setResizable(idg,true);
+	id3=document.Optics.addObject("text"," text=Focal Length (arbitrary units)=, calc=f");
+    document.Optics.setDisplayOffset(id3,-45,70);
+    document.Optics.setAnimationSlave(idg,id3);
+
+	}
+			  document.Optics.setAutoRefresh(true);
+	}
+		
+
+
+
+</script>
+</head>
+
+<body bgcolor="#ffefce">
+
+<h2 align="left">The Human Eye&nbsp;&nbsp;</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center"><b><font color="#003300">Add/Remove:</font></b><font 
+      color="#993399">&nbsp;</font>&nbsp;&nbsp; <a href="javascript:farsource()">Far 
+      Source</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:nearsource()">Near 
+      Source</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:glasses()">Eye 
+      Glasses</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet code="optics.OpticsApplet.class" codebase="../../classes/" 
+      height="200" id="Optics" name="Optics" width="600" 
+      archive="Physlets.jar" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="align" value="middle">
+		<param name="permissions" value="sandbox" />
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider" width="400" 
+      height="25" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="min" value="0.7">
+        <param name="max" value="1">
+        <param name="value" value="1">
+        <param name="label" 
+        value="Focal Length of Eye System (arbitrary units)">
+		<param name="permissions" value="sandbox" />
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="100%">
+      <p align="center">Healthy Eye:&nbsp; <a href="javascript:Healthy()">
+      Initialize</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      Farsighted Eye: <a href="javascript:Far()">Initialize</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      Nearsighted Eye: <a href="javascript:Near()">Initialize</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>The applet is a simplified model of the eye in which the front of the eye is 
+a single converging lens.&nbsp; </p>
+<p><b>Normal Vision</b></p>
+<p>Initialize a healthy eye by clicking on the link at the bottom of the applet.&nbsp; 
+Then add a far source of light using the link at the top of the applet.&nbsp; 
+Notice how the parallel rays of light from the far away source converge at the 
+back of the eye on the retina.&nbsp; The retina is to the eye what film is to a 
+camera.&nbsp; The retina is made up of nerves that convert the light energy into 
+an electrical signal that is sent to the brain.&nbsp; So in order for an object 
+to be &quot;seen&quot; its image must be FOCUSED on the back of the retina.</p>
+<p><b>Accommodation</b></p>
+<p>Now remove the far source and add a near source.&nbsp; Notice that the light 
+from the near by source is focused behind the retina.&nbsp; In this case the 
+person would see a blurry image.&nbsp; As evolution would have it, our eyes have 
+the ability to accommodate.&nbsp; You can change the focal length of your eye by 
+using the muscles of your eye to change the curvature of the lens.&nbsp; Try 
+looking at a far away object and then at something close by, such as your 
+finger.&nbsp; You will feel the muscles in your eye respond as you change your 
+focus.&nbsp; In the applet accommodation is accomplished by using the slider at 
+the bottom to vary the focal length of the lens.&nbsp; Vary the focal length of 
+the lens, using the slider, until the image of the light source is focused on 
+the retina.</p>
+<p><b>Viewing Far Away Objects</b></p>
+<p>People with normal vision focus on far away objects with their eyes relaxed.&nbsp; 
+Notice that the far source in the applet was focused when the focal length was 
+at its maximum, 1 unit.&nbsp; As you use your muscles to accommodate you shorten 
+the focal length of your eye.&nbsp; </p>
+<p><b>Near Point and Far Point</b></p>
+<p>Put your finger in front of your eyes about an arm's length away.&nbsp; You 
+should be able to see a clear image of your finger.&nbsp; Now slowly bring your 
+finger toward you.&nbsp; At some point, you will no longer be able to focus on 
+your finger and it will become blurry.&nbsp; This is your near point.&nbsp; It 
+is the closest distance at which you can focus on an object.&nbsp; If you have 
+not already done so, initialize a healthy eye with a near source of light 
+focused on the retina.&nbsp; Now move the source of light toward the eye.&nbsp; 
+At some point you will no longer be able to accommodate (using the slider) to 
+focus the source.&nbsp; That is the near point for the eye in the applet.&nbsp; 
+Notice that the eye in the applet is not to scale relative to a real eye.&nbsp; 
+If we had made it to scale you would need a MUCH wider computer screen.</p>
+<p>The far point is just like the near point except it is the furthest point an 
+eye can focus on.&nbsp; For people with normal vision, the far point is at 
+infinity.</p>
+<p><b>Nearsightedness and Farsightedness</b></p>
+<p>Initialize a nearsighted eye and add a far source.&nbsp; Notice that the 
+light does not focus on the retina when the eye is relaxed.&nbsp; Instead, it 
+focuses in front of the retina.&nbsp; Use the slider to try and focus the light.&nbsp; 
+Notice that accommodation does not help in this situation.&nbsp;&nbsp; Now 
+remove the far source and add a near source.&nbsp; Notice that the nearsighted 
+person has no trouble focusing on the near by source.&nbsp; A person who is 
+nearsighted can clearly see near objects but not far away objects.</p>
+<p>Now initialize a farsighted eye and investigate it as you did with the 
+nearsighted eye.&nbsp; Notice that a farsighted person can see far away objects 
+but has difficulty focusing on near by objects.</p>
+<p><b>Corrective Lenses</b></p>
+<p>Initialize a nearsighted eye with a far source.&nbsp; Unaided, this eye can 
+not focus on the far source.&nbsp; Now add an eyeglass lens.&nbsp; Notice that 
+you can change the focal length (power) of the eyeglass lens by clicking on it 
+and then dragging on the hotspots.&nbsp; You can make the lens either converging 
+or diverging.</p>
+<p>Since light is focused in front of the retina in a nearsighted eye, 
+nearsightedness is corrected using a diverging lens.&nbsp; Can you find the 
+correct focal length to correct this eye?&nbsp; In the same way, farsightedness 
+is corrected using a converging lens.</p>
+<p>&nbsp;</p>
+<p>Illustration by Melissa Dancy and Wolfgang Christian</p>
+
+</body>
+
+</html>
+
